@@ -1,0 +1,32 @@
+
+<div class="track-container">
+    <div class="track-nav" style="display: flex;align-items: center;">
+    <div class="track-avatar"><img src="../assets/dev.png" style="height: 100%;width: 100%;" alt=""></div><span style="color: white; margin-left: 10px;">Asset Tracking Sample Using Mqtt Client</span>
+    </div>
+<div class="track-content " style="display: flex;">
+    <div *ngIf="mapcard.on" style="width: 30%;" class="card">
+        <div style="    border: 1px solid #aad3df;" class="card">
+            <img src="../assets/{{mapcard.img}}.jpg" alt="Card image" class="card-image">
+            <div class="card-content">
+              <h2 class="card-title">{{mapcard.title}}</h2>
+              <p class="card-description">{{mapcard.description}}The Flilght get on the way right time</p>
+           
+            </div>
+            <div class="track-data"  style="display: flex;flex-direction: column;">
+               <span> Lat :{{mapcard.currentData.lat}}</span>
+               <span> Lan :{{mapcard.currentData.lng}}</span>
+               <span> Speed / Hrs :{{mapcard.currentData.speed}}</span>
+            </div>
+            <div style="padding: 10px;">
+                    <p-button (onClick)="onTracking(mapcard.id)" [style]="{'padding': '10px 20px 10px 20px'}" label="Track" class="w-full" styleClass="w-full"></p-button>
+                    <p-button (onClick)="stopTracking(mapcard.id)" [style]="{'padding': '10px 20px 10px 20px','margin-left':'10px'}" label="Close" class="w-full" styleClass="w-full" severity="secondary"></p-button>
+            </div>
+          </div>
+    </div>
+    <div [style.width]="mapcard.on?'70%':'100%'" class="map-content">
+        <app-map #mapComponent (clickMarker)="markerClicked($event)"></app-map>
+
+    </div>
+
+</div>
+</div>
